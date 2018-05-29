@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
     'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,' +
     'require' // for Webpack/Browserify
   )
-
+  // Vue警告
   const warnNonPresent = (target, key) => {
     warn(
       `Property or method "${key}" is not defined on the instance but ` +
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
       target
     )
   }
-
+  // http://es6.ruanyifeng.com/#docs/proxy
   const hasProxy =
     typeof Proxy !== 'undefined' && isNative(Proxy)
 

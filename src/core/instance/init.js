@@ -5,7 +5,7 @@ import { initProxy } from './proxy'
 import { initState } from './state'
 import { initRender } from './render'
 import { initEvents } from './events'
-import { mark, measure } from '../util/perf'
+import { mark, measure } from '../util/perf' // 性能
 import { initLifecycle, callHook } from './lifecycle'
 import { initProvide, initInjections } from './inject'
 import { extend, mergeOptions, formatComponentName } from '../util/index'
@@ -18,8 +18,9 @@ export function initMixin (Vue: Class<Component>) {
     // a uid
     vm._uid = uid++
 
-    let startTag, endTag
+    let startTag, endTag // 测试性能时间用 为了performance.measure()使用
     /* istanbul ignore if */
+    // 开发环境性能测试
     if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
       startTag = `vue-perf-start:${vm._uid}`
       endTag = `vue-perf-end:${vm._uid}`
@@ -30,11 +31,13 @@ export function initMixin (Vue: Class<Component>) {
     vm._isVue = true
     // merge options
     if (options && options._isComponent) {
-      // optimize internal component instantiation
+      // optimize internal component instantiation // 优化内部构件实例化
       // since dynamic options merging is pretty slow, and none of the
       // internal component options needs special treatment.
-      initInternalComponent(vm, options)
+      // 由于动态选项合并是相当缓慢的，没有一个内部组件选项需要特殊处理
+      initInternalComponent(vm, options) // 初始化组件
     } else {
+      // 合并option
       vm.$options = mergeOptions(
         resolveConstructorOptions(vm.constructor),
         options || {},
