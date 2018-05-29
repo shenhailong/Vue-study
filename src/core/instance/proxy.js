@@ -24,9 +24,11 @@ if (process.env.NODE_ENV !== 'production') {
     )
   }
   // http://es6.ruanyifeng.com/#docs/proxy
+  // ƒ Proxy() { [native code] }
+  // function Proxy() { [native code] }
   const hasProxy =
     typeof Proxy !== 'undefined' && isNative(Proxy)
-
+  // 设置keyCodes
   if (hasProxy) {
     const isBuiltInModifier = makeMap('stop,prevent,self,ctrl,shift,alt,meta,exact')
     config.keyCodes = new Proxy(config.keyCodes, {
@@ -75,5 +77,5 @@ if (process.env.NODE_ENV !== 'production') {
     }
   }
 }
-
+// 初始化Proxy。代理拦截
 export { initProxy }
